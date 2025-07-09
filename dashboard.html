@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Dashboard</title>
+    <style>
+        body { font-family: Arial; margin: 20px; background-color: #e6f2ff;}
+        h2 { color: #333; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            background-color: #ffffff; /* White inside */
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+    
+        th {
+            background-color: #0099cc; /* Teal blue headers */
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            text-align: left;
+        }
+    
+        td {
+            padding: 10px 12px;
+            font-size: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+    
+        tr:hover {
+            background-color: #f1f9ff; /* Soft highlight on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>📚 Library Management Dashboard</h1>
+
+    <h2>✅ Available Books</h2>
+    <table>
+        <tr><th>Title</th><th>Year</th><th>Genre</th><th>Available Copies</th></tr>
+        {% for book in available_books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.published_year }}</td>
+            <td>{{ book.genre }}</td>
+            <td>{{ book.available_copies }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>📕 Currently Borrowed Books</h2>
+    <table>
+        <tr><th>Title</th><th>Borrowed By</th><th>Borrow Date</th></tr>
+        {% for b in borrowed_books %}
+        <tr>
+            <td>{{ b.title }}</td>
+            <td>{{ b.member_name }}</td>
+            <td>{{ b.borrow_date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>⚠️ Overdue Books</h2>
+    <table>
+        <tr><th>Title</th><th>Borrowed By</th><th>Borrow Date</th></tr>
+        {% for o in overdue_books %}
+        <tr>
+            <td>{{ o.title }}</td>
+            <td>{{ o.member_name }}</td>
+            <td>{{ o.borrow_date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>🏅 Top Members</h2>
+    <table>
+        <tr><th>Name</th><th>Total Books Borrowed</th></tr>
+        {% for member in top_members %}
+        <tr>
+            <td>{{ member.name }}</td>
+            <td>{{ member.borrow_count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
